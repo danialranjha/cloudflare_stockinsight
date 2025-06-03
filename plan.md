@@ -188,8 +188,8 @@ This document provides a comprehensive plan for porting the Streamlit-based Stoc
 
 - Initialize Next.js project:
   ```bash
-  npx create-next-app@latest cloudflare_stockinsight
-  cd cloudflare_stockinsight
+  npx create-next-app@latest cloudflare-stockinsight
+  cd cloudflare-stockinsight
   ```
 - Add TypeScript (optional but recommended):
   ```bash
@@ -205,7 +205,7 @@ This document provides a comprehensive plan for porting the Streamlit-based Stoc
 #### 2.2.1. Using Cloudflare Functions (API Routes)
 
 - Place API logic in `/pages/api/` (Next.js) or `/functions/` (for vanilla Cloudflare Functions).
-- Example: [`pages/api/stock.ts`](cloudflare_stockinsight/pages/api/stock.ts)
+- Example: [`pages/api/stock.ts`](cloudflare-stockinsight/pages/api/stock.ts)
 - Cloudflare will automatically deploy these as serverless functions.
 
 #### 2.2.2. Managing Secrets/Environment Variables
@@ -218,7 +218,7 @@ This document provides a comprehensive plan for porting the Streamlit-based Stoc
 
 - **`wrangler.toml`** (for advanced configuration, KV, Durable Objects, etc.):
   ```toml
-  name = "cloudflare_stockinsight"
+  name = "cloudflare-stockinsight"
   main = "functions/index.ts"
   compatibility_date = "2024-05-30"
 
@@ -250,7 +250,7 @@ This document provides a comprehensive plan for porting the Streamlit-based Stoc
 2. **Cloudflare Pages auto-builds and deploys** on push (or use GitHub Actions for more control).
 3. **Manual deployment** (optional):
    ```bash
-   npx wrangler pages deploy ./out --project-name=cloudflare_stockinsight --branch=main --api-token=$CF_API_TOKEN
+   npx wrangler pages deploy ./out --project-name=cloudflare-stockinsight --branch=main --api-token=$CF_API_TOKEN
    ```
 
 #### 2.2.6. Migration Caveats & Tips
@@ -301,7 +301,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_KEY }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: cloudflare_stockinsight
+          projectName: cloudflare-stockinsight
           directory: .next
           branch: main
         env:
